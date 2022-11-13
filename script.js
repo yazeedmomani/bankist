@@ -85,3 +85,24 @@ nav.addEventListener('mouseover', function (e) {
 nav.addEventListener('mouseout', function (e) {
   fadeAnimation(e, 1);
 });
+
+///////////////////////////////////////
+// Sticky Navigation
+
+const header = document.querySelector('.header');
+const navSection = document.querySelector('.nav');
+const navHeight = navSection.getBoundingClientRect().height;
+
+const stickyNav = function(entries){
+  const [entry] = entries;
+  if(!entry.isIntersecting) navSection.classList.add('sticky');
+  else navSection.classList.remove('sticky');
+
+}
+
+const headerObs = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${navHeight}px`
+})
+headerObs.observe(header);

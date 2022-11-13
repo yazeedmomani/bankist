@@ -93,16 +93,38 @@ const header = document.querySelector('.header');
 const navSection = document.querySelector('.nav');
 const navHeight = navSection.getBoundingClientRect().height;
 
-const stickyNav = function(entries){
+const stickyNav = function (entries) {
   const [entry] = entries;
-  if(!entry.isIntersecting) navSection.classList.add('sticky');
+  if (!entry.isIntersecting) navSection.classList.add('sticky');
   else navSection.classList.remove('sticky');
-
-}
+};
 
 const headerObs = new IntersectionObserver(stickyNav, {
   root: null,
   threshold: 0,
-  rootMargin: `-${navHeight}px`
-})
+  rootMargin: `-${navHeight}px`,
+});
 headerObs.observe(header);
+
+///////////////////////////////////////
+// Reveal Elements on Scroll
+
+const allSections = document.querySelectorAll('.section');
+
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(revealSection, {
+  root: null,
+  threshold: 0.15,
+});
+allSections.forEach(cur => {
+  sectionObserver.observe(cur);
+  cur.classList.add('section--hidden');
+});

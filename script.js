@@ -7,6 +7,7 @@ const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
 const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
+const nav = document.querySelector('.nav__links');
 
 ///////////////////////////////////////
 // Modal window
@@ -50,12 +51,37 @@ tabsContainer.addEventListener('click', function (e) {
   );
 
   const btnNum = clicked.getAttribute('data-tab');
-  const targetContent = clicked.closest('.operations').querySelector(`.operations__content--${btnNum}`);
-  const allContent = clicked.closest('.operations').querySelectorAll(`.operations__content`);
+  const targetContent = clicked
+    .closest('.operations')
+    .querySelector(`.operations__content--${btnNum}`);
+  const allContent = clicked
+    .closest('.operations')
+    .querySelectorAll(`.operations__content`);
 
-  allContent.forEach((cur) => cur === targetContent ? cur.classList.add('operations__content--active') : cur.classList.remove('operations__content--active'));
-
+  allContent.forEach(cur =>
+    cur === targetContent
+      ? cur.classList.add('operations__content--active')
+      : cur.classList.remove('operations__content--active')
+  );
 });
 
 ///////////////////////////////////////
 // Menu Fade Animation
+
+nav.addEventListener('mouseover', function (e) {
+  const hovered = e.target;
+  if (hovered.classList.contains('nav__link')) {
+    this.querySelectorAll('.nav__link').forEach(function (cur) {
+      if (cur !== hovered) cur.style.opacity = 0.5;
+    });
+  }
+});
+
+nav.addEventListener('mouseout', function (e) {
+  const hovered = e.target;
+  if (hovered.classList.contains('nav__link')) {
+    this.querySelectorAll('.nav__link').forEach(function (cur) {
+      cur.style.opacity = 1;
+    });
+  }
+});

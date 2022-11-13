@@ -156,3 +156,34 @@ const imgObserver = new IntersectionObserver(revealImg, {
 })
 
 featuresImgs.forEach(cur => {imgObserver.observe(cur)})
+
+///////////////////////////////////////
+// Slider Component
+
+const sliders = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+const maxSlide = sliders.length - 1;
+let curSlide = 0;
+
+const goToSlide = (slide) => sliders.forEach((cur, i) => cur.style.transform = `translateX(${100 * (i - slide)}%)`);
+
+const nextSlide = function(){
+  if(curSlide === maxSlide) curSlide = 0;
+  else curSlide++;
+
+  goToSlide(curSlide);
+}
+
+const prevSlide = function(){
+  if(curSlide === 0) curSlide = maxSlide;
+  else curSlide--;
+
+  goToSlide(curSlide);
+}
+
+goToSlide(0);
+
+btnRight.addEventListener('click', nextSlide);
+
+btnLeft.addEventListener('click', prevSlide);

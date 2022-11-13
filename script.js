@@ -1,12 +1,15 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modal = document.querySelector('.modal');
 const overlay = document.querySelector('.overlay');
 const btnCloseModal = document.querySelector('.btn--close-modal');
 const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+///////////////////////////////////////
+// Modal window
 
 const openModal = function (e) {
   e.preventDefault();
@@ -32,9 +35,6 @@ document.addEventListener('keydown', function (e) {
 
 ///////////////////////////////////////
 // Tabbed Component
-const tabs = document.querySelectorAll('.operations__tab');
-const tabsContainer = document.querySelector('.operations__tab-container');
-const tabsContent = document.querySelectorAll('.operations__content');
 
 tabsContainer.addEventListener('click', function (e) {
   e.preventDefault();
@@ -56,3 +56,6 @@ tabsContainer.addEventListener('click', function (e) {
   allContent.forEach((cur) => cur === targetContent ? cur.classList.add('operations__content--active') : cur.classList.remove('operations__content--active'));
 
 });
+
+///////////////////////////////////////
+// Menu Fade Animation

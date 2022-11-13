@@ -74,6 +74,7 @@ nav.addEventListener('mouseover', function (e) {
     this.querySelectorAll('.nav__link').forEach(function (cur) {
       if (cur !== hovered) cur.style.opacity = 0.5;
     });
+    nav.parentElement.querySelector('.nav__logo').style.opacity = 0.5;
   }
 });
 
@@ -83,5 +84,6 @@ nav.addEventListener('mouseout', function (e) {
     this.querySelectorAll('.nav__link').forEach(function (cur) {
       cur.style.opacity = 1;
     });
+    nav.parentElement.querySelector('.nav__logo').style.opacity = 1;
   }
 });
